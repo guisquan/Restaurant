@@ -98,7 +98,24 @@
                 // alert("error");
                 return false;
             }
-            $("#msgForm").submit();
+            $.get("${pageContext.request.contextPath}/MessageServlet?method=addMsg",
+                {
+                    uName: $("#name").val(),
+                    mEmail: $("#mEmail").val(),
+                    message: $("#message").val(),
+                    mSubject: $("#mSubject").val()
+                },
+                function (data) {
+                    if (data.indexOf('true') === -1) {
+                        // flag = false;
+                        // return true;
+                        alert("faild");
+                    } else {
+                        // alert("add a goods");
+                        //do something while true;
+                    }
+                }
+            );
             return true;
         }
 
@@ -112,8 +129,13 @@
         function checkCodeMethod() {
             var code = $("#verification").val();
             var flag = true;
-            $.get("${pageContext.request.contextPath}/ImageCodeServlet?method=checkCode",
-                {codes: code},
+            $.post("${pageContext.request.contextPath}/messageServlet.do?method=addMsg",
+                {
+                    uName: $("#name").val(),
+                    mEmail: $("#mEmail").val(),
+                    message: $("#message").val(),
+                    mSubject: $("#mSubject").val(),
+                },
                 function (data) {
                     if (data.indexOf('true') === -1) {
                         flag = false;
@@ -129,7 +151,7 @@
 </head>
 <body>
 
-<form action="messageServlet.do" method="post" class="elegant-aero" id="msgForm">
+<form action="" method="post" class="bootstrap-frm" id="msgForm">
     <input type="hidden" name="method" value="addMsg">
     <h1>Contact Form
         <span>Please fill all the texts in the fields.</span>
@@ -151,7 +173,7 @@
     </label>
     <label>
         <span>Subject :</span>
-        <select name="mSubject">
+        <select name="mSubject" id="mSubject">
             <option value="1">Job Inquiry</option>
             <option value="2">General Question</option>
         </select>

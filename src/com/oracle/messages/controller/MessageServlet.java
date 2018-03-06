@@ -12,17 +12,18 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Date;
 
-@WebServlet(name = "MessageServlet", urlPatterns = "/messageServlet.do")
+@WebServlet(name = "MessageServlet", urlPatterns = "/MessageServlet")
 public class MessageServlet extends BaseServlet {
-    protected String addMsg(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public String addMsg(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Message form = CommonUtils.toBean(request.getParameterMap(), Message.class);
+
         form.setmId(CommonUtils.uuid());
         form.setmDate(new Date(System.currentTimeMillis()));
         //0-未查看
         form.setmState(0);
         MessageBizImpl messageBiz = new MessageBizImpl();
         String result = "false";
-        if (!messageBiz.addMsg(form)) {
+        if (messageBiz.addMsg(form)) {
             //添加失败就不反应假装留言成功
             result = "true";
         }

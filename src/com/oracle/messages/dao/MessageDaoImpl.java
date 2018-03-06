@@ -26,12 +26,8 @@ public class MessageDaoImpl {
                 message.getmEmail(),
                 message.getMessage(),
                 message.getmSubject(),
-                message.getmState()};
-        if (qr.update(sql, params) > 0) {
-            return true;
-        } else {
-            return false;
-        }
+                message.getmDate()};
+        return qr.update(sql, params) > 0;
     }
 
     public List<Message> findMessageBySubject(String subject) throws SQLException {

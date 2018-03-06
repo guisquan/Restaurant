@@ -21,6 +21,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    This is my JSP page. <br>
+  <script type="text/javascript">
+      window.location="${pageContext.request.contextPath}/app/login.jsp";
+  </script>
   </body>
 </html>

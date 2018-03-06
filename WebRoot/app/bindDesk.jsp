@@ -18,15 +18,15 @@
 </head>
 <body>
 <div class="panel-body">
-    <form action="" class="am-form">
+    <form action="${pageContext.request.contextPath}/DeskServlet">
+        <input type="hidden" name="method" value="bindDesk">
         <h4>选择桌子</h4>
-        <input type="hidden" name="method" value="">
         <select name="deskId" id="deskId">
             <c:forEach items="${requestScope.deskList}" var="desk">
                 <option value="${desk.did}">${desk.dName}--${desk.seatNum}人桌</option>
             </c:forEach>
         </select>
-        <input type="submit" value="确定" class="waves-light">
+        <input type="submit" value="确定">
     </form>
 </div>
 </body>

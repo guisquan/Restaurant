@@ -137,17 +137,17 @@
                     "<div id='widget-chart-box-1' style='height: 110px;width: 110px;float: left;'></div>" +
                     "<div class='widget-detail-1' style='float: right;'>" +
                     "<h2 class='p-t-10 m-b-0'>￥" + goodsList[i].gPrice + " </h2>" +
-                    "<p class='text-muted'><div class='gw_num'>" +
-                    "<em class='jian'>-</em><input type='text' class='num' value='1'>" +
-                    "<em class='add'>+</em></div><a href='javascript:void(0);' onclick='addGoods(" + goodsList[i].gid + ")' style='float: left' class='label label-danger'>加入购物车</a></p>" +
+                    "<p class='text-muted'>" +
+                    // "<div class='gw_num'>" +
+                    // "<em class='jian'>-</em><input type='text' class='num' value='1'>" +
+                    // "<em class='add'>+</em></div>" +
+                    "<a href='javascript:void(0);' onclick='addGoods(" + goodsList[i].gid + ")' style='float: left' class='label label-danger'>加入购物车</a></p>" +
                     "</div></div></div></div>";
             }
             $("#rowCard").html(txt);
         }
 
         function addGoods(gid) {
-            // var num = $(this).prev().children(".num").val();
-            // alert(num);
             $.get("${pageContext.request.contextPath}/CartServlet?method=add",
                 {gid: gid, count: 1},
                 function (data) {
@@ -156,7 +156,7 @@
                         // return true;
                         alert("faild");
                     } else {
-                        alert("add a goods");
+                        // alert("add a goods");
                         //do something while true;
                     }
                 }
@@ -166,6 +166,14 @@
         function cartList() {
             $("#rowCard").load("cartList.jsp");
         }
+
+        function loadRecommend() {
+            $("#rowCard").load("recommend.jsp");
+        }
+        
+        function loadGame() {
+            $("#rowCard").html("${pageContext.request.contextPath}/games/index.html");
+        }
     </script>
 </head>
 
@@ -173,12 +181,14 @@
 <!-- Begin page -->
 <header class="am-topbar am-topbar-fixed-top">
     <div class="am-topbar-left am-hide-sm-only">
-        <a href="index.jsp" class="logo"><span>Lo<span>go</span></span><i class="zmdi zmdi-layers"></i></a>
+        <a href="index.jsp" class="logo">
+            <span>${sessionScope.desk.dName}<span>${sessionScope.desk.seatNum}</span></span>
+            <i class="zmdi zmdi-layers"></i></a>
     </div>
 
     <div class="contain">
         <ul class="am-nav am-navbar-nav am-navbar-left">
-            <li><h4 class="page-title">菜单</h4></li>
+            <li><h4 class="page-title">${sessionScope.session_user.userName}为您服务</h4></li>
         </ul>
 
         <ul class="am-nav am-navbar-nav am-navbar-right">
@@ -241,6 +251,11 @@
                         </ul>
                     </li>
                 </c:forEach>
+                <li><a href="javascript:void(0);" onclick="loadRecommend()"><span class="am-icon-area-chart"></span> 留言</a>
+                </li>
+                <li><a href="javascript:void(0);" onclick="loadGame()"><span class="am-icon-android"></span>
+                    休闲游戏</a>
+                </li>
             </ul>
         </div>
     </div>

@@ -39,6 +39,29 @@
                 });
         }
 
+        // function placeTheOrder() {
+        // $("#main").load("orderDesc.jsp");
+        // }
+
+        function placeTheOrder() {
+            $.ajaxSetup({
+                async: false
+            });
+            var flag = true;
+            $.get("${pageContext.request.contextPath}/OrderServlet?method=placeTheOrder",
+                {},
+                function (data) {
+                    if (data.indexOf('true') === -1) {
+                        flag = false;
+                        // 提醒删除失败;
+                    } else {
+                        //刷新页面或者用js修改
+                        $("#main").load("orderDesc.jsp");
+                    }
+
+                });
+        }
+
     </script>
 </head>
 <body>
@@ -77,7 +100,10 @@
                 </tbody>
             </table>
             <em>总价：${sessionScope.cart.total}元</em>
-            <em class="label label-warning" style="float:right;" id="placeTheOrder">下单</em>
+            <a href="javascript:void(0);" onclick="placeTheOrder()"
+               class="label label-warning"
+               style="float:right;"
+               id="placeTheOrder">下单</a>
         </div>
     </div>
 </div>

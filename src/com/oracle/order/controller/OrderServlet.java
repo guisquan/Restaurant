@@ -8,6 +8,7 @@ import com.oracle.cart.entity.CartItem;
 import com.oracle.order.biz.OrderBizImpl;
 import com.oracle.order.entity.Order;
 import com.oracle.order.entity.OrderItem;
+import com.oracle.user.entity.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,7 +23,7 @@ import java.util.List;
 public class OrderServlet extends BaseServlet {
     private OrderBizImpl orderBiz = new OrderBizImpl();
 
-    protected String add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public String placeTheOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         /*
          * 1.从session中获取cart
          * 2.使用cart生成order
@@ -40,9 +41,9 @@ public class OrderServlet extends BaseServlet {
         //订单状态1 2 3 4
         order.setoState(2);
         //订单所有者 Disk
-        Desk desk = (Desk) request.getSession().getAttribute("session_desk");
-        //User owner = (User) request.getSession().getAttribute("session_user");
-
+        Desk desk = (Desk) request.getSession().getAttribute("desk");
+        User water = (User) request.getSession().getAttribute("session_user");
+        order.setUser(water);
         order.setDesk(desk);
         //这是订单的合计
         order.setTotalPrice(cart.getTotal());
@@ -69,7 +70,9 @@ public class OrderServlet extends BaseServlet {
         //下面就跟数据库握手
         orderBiz.add(order);
         //保存order到request范围
-        request.setAttribute("order", order);
+        request.getSession().setAttribute("order", order);
+        response.getWriter().print("true");
+//        return "r:/app/index.jsp#main";
         return "";
     }
 }

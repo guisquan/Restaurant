@@ -28,6 +28,9 @@ public class UserServlet extends BaseServlet {
         //登录成功
         //将用户存到session
         request.getSession().setAttribute("session_user", user);
+        //服务员登录成功后创建Order
+        //创建cart
+        //绑定desk
         response.getWriter().print("true");
         return "";
     }
