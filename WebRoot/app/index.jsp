@@ -18,46 +18,47 @@
     <link rel="stylesheet" href="../css/page/form.css"/>
     <link rel="stylesheet" href="../css/component.css"/>
     <style type="text/css">
-        .gw_num {
-            border: 1px solid #dbdbdb;
-            width: 110px;
-            /*width: 220px;*/
-            line-height: 26px;
-            overflow: hidden;
-        }
+        /*.gw_num {
+                    border: 1px solid #dbdbdb;
+                    width: 110px;
+                    !*width: 220px;*!
+                    line-height: 26px;
+                    overflow: hidden;
+                }
 
-        .gw_num em {
-            display: block;
-            height: 26px;
-            width: 26px;
-            float: left;
-            color: #7A7979;
-            border-right: 1px solid #dbdbdb;
-            text-align: center;
-            cursor: pointer;
-        }
+                .gw_num em {
+                    display: block;
+                    height: 26px;
+                    width: 26px;
+                    float: left;
+                    color: #7A7979;
+                    border-right: 1px solid #dbdbdb;
+                    text-align: center;
+                    cursor: pointer;
+                }
 
-        .gw_num .num {
-            display: block;
-            float: left;
-            text-align: center;
-            width: 52px;
-            font-style: normal;
-            font-size: 14px;
-            line-height: 24px;
-            border: 0;
-        }
+                .gw_num .num {
+                    display: block;
+                    float: left;
+                    text-align: center;
+                    width: 52px;
+                    font-style: normal;
+                    font-size: 14px;
+                    line-height: 24px;
+                    border: 0;
+                }
 
-        .gw_num em.add {
-            float: right;
-            border-right: 0;
-            border-left: 1px solid #dbdbdb;
-        }
+                .gw_num em.add {
+                    float: right;
+                    border-right: 0;
+                    border-left: 1px solid #dbdbdb;
+                }
+            */
     </style>
     <script type="text/javascript" src="../js/jquery-2.1.0.js"></script>
     <script type="text/javascript">
 
-        //加减按钮
+        /*//加减按钮
         $(function () {
             //加的效果
             $(".add").click(function () {
@@ -77,7 +78,7 @@
                 }
                 $(this).next().val(num);
             });
-        });
+        });*/
 
 
         /**
@@ -170,9 +171,9 @@
         function loadRecommend() {
             $("#rowCard").load("recommend.jsp");
         }
-        
+
         function loadGame() {
-            $("#rowCard").html("${pageContext.request.contextPath}/games/index.html");
+            <%--$("#rowCard").load("${pageContext.request.contextPath}/app/games/index.html");--%>
         }
     </script>
 </head>
@@ -253,7 +254,7 @@
                 </c:forEach>
                 <li><a href="javascript:void(0);" onclick="loadRecommend()"><span class="am-icon-area-chart"></span> 留言</a>
                 </li>
-                <li><a href="javascript:void(0);" onclick="loadGame()"><span class="am-icon-android"></span>
+                <li><a href="${pageContext.request.contextPath}/app/games/index.html" ><span class="am-icon-android"></span>
                     休闲游戏</a>
                 </li>
             </ul>
@@ -279,7 +280,6 @@
     </div>
     <!-- end right Content here -->
     <!--</div>-->
-</div>
 </div>
 
 <!-- navbar -->

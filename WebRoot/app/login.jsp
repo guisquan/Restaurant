@@ -13,10 +13,40 @@
     <link rel="stylesheet" href="../css/amazeui.css"/>
     <link rel="stylesheet" href="../css/component.css"/>
     <link rel="stylesheet" href="../css/page/form.css"/>
+    <style type="text/css">
+        .mask {
+            position: absolute;
+            top: 0px;
+            filter: alpha(opacity=60);
+            background-color: #777;
+            z-index: 1002;
+            left: 0px;
+            opacity: 0.5;
+            -moz-opacity: 0.5;
+        }
+
+        .model {
+            position: absolute;
+            z-index: 1003;
+            width: 320px;
+            height: 320px;
+            text-align: center;
+            background-color: #e5fffd;
+            display: none;
+        }
+    </style>
     <script type="text/javascript" src="../js/jquery-2.1.0.js"></script>
     <script type="text/javascript">
         $(function () {
             $("#login").click(function () {
+
+                /**
+                 * 关闭Ajax异步
+                 */
+                $.ajaxSetup({
+                    async: false
+                });
+
                 //检查数据，提交
                 // $("form").submit();
                 var userName = $("[name='userName']").val();
@@ -31,15 +61,61 @@
                             alert("你是不是傻？用户名或密码错了！");
                         } else {
                             //do something while true;
-                            $(window).attr('location',"${pageContext.request.contextPath}/DeskServlet?method=findAllDesk");
+                            loadBindDesk();
+                            $("#model").load("bindDesk.jsp");
+                            showAll('#model');
+                            <%--$(window).attr('location', "${pageContext.request.contextPath}/DeskServlet?method=findAllDesk");--%>
                         }
                     }
                 );
             });
         });
+
+        function loadBindDesk() {
+            $.post("${pageContext.request.contextPath}/DeskServlet?method=findAllDesk",
+                {},
+                function (data) {
+                    if (data.indexOf('true') === -1) {
+                        // 失败;
+                        return false;
+                    } else {
+                        //do something while true;
+                        return true;
+                    }
+                }
+            );
+        }
+
+        /**
+         * 显示保护罩
+         */
+        function showMask() {
+            $("#mask").css("height", $(document).height());
+            $("#mask").css("width", $(document).width());
+            $("#mask").show();
+        }
+
+        //让指定的DIV始终显示在屏幕正中间
+        function letDivCenter(divName) {
+            var top = ($(window).height() - $(divName).height()) / 5;
+            var left = ($(window).width() - $(divName).width()) / 5;
+            var scrollTop = $(document).scrollTop();
+            var scrollLeft = $(document).scrollLeft();
+            $(divName).css({
+                position: 'absolute',
+                'top': top + scrollTop,
+                left: left + scrollLeft
+            }).show();
+        }
+
+        function showAll(divName) {
+            showMask();
+            letDivCenter(divName);
+        }
     </script>
 </head>
 <body>
+<div id="mask" class="mask"></div>
 <div class="account-pages">
     <div class="wrapper-page">
         <div class="text-center">
@@ -81,7 +157,9 @@
                     </div>
 
                 </form>
-
+                <%--弹出框--%>
+                <div id="model" class="model">
+                </div>
             </div>
         </div>
     </div>

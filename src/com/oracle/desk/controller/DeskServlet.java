@@ -4,6 +4,8 @@ import cn.liushao.servlet.BaseServlet;
 import com.oracle.desk.biz.DeskBizImpl;
 import com.oracle.desk.entity.Desk;
 import com.oracle.user.entity.User;
+import net.sf.json.JSON;
+import net.sf.json.JSONArray;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,8 +21,11 @@ public class DeskServlet extends BaseServlet {
 
     public String findAllDesk(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Desk> deskList = deskBiz.findAllDesk();
-        request.setAttribute("deskList", deskList);
-        return "f:/app/bindDesk.jsp";
+        request.getSession().setAttribute("deskList", deskList);
+        response.getWriter().print("true");
+//        return "f:/app/bindDesk.jsp";
+//        response.getWriter().print(JSONArray.fromObject(deskList).toString());
+        return "";
     }
 
 

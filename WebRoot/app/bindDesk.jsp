@@ -10,24 +10,17 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="../css/core.css"/>
-    <link rel="stylesheet" href="../css/menu.css"/>
-    <link rel="stylesheet" href="../css/amazeui.css"/>
-    <link rel="stylesheet" href="../css/component.css"/>
-    <link rel="stylesheet" href="../css/page/form.css"/>
 </head>
 <body>
-<div class="panel-body">
-    <form action="${pageContext.request.contextPath}/DeskServlet">
-        <input type="hidden" name="method" value="bindDesk">
-        <h4>选择桌子</h4>
-        <select name="deskId" id="deskId">
-            <c:forEach items="${requestScope.deskList}" var="desk">
-                <option value="${desk.did}">${desk.dName}--${desk.seatNum}人桌</option>
-            </c:forEach>
-        </select>
-        <input type="submit" value="确定">
-    </form>
-</div>
+<form action="${pageContext.request.contextPath}/DeskServlet">
+    <input type="hidden" name="method" value="bindDesk">
+    <h4>选择桌子</h4>
+    <select name="deskId" id="deskId">
+        <c:forEach items="${sessionScope.deskList}" var="desk">
+            <option value="${desk.did}">${desk.dName}--${desk.seatNum}人桌</option>
+        </c:forEach>
+    </select>
+    <input type="submit" value="确定">
+</form>
 </body>
 </html>
