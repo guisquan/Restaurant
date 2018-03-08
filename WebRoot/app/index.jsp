@@ -91,7 +91,8 @@
         /**
          * 初始化，加载菜单栏
          */
-        $(function () {
+        //放在bindDesk中了
+        /*$(function () {
             $.ajaxSetup({
                 async: false
             });
@@ -107,7 +108,7 @@
                     }
                 }
             );
-        });
+        });*/
 
         function loadStylesById(styleId) {
             var goodsList = new Array();
@@ -227,11 +228,11 @@
 
             <ul class="am-list admin-sidebar-list">
                 <li><a href="index.jsp"><span class="am-icon-home"></span> 首页</a></li>
-                <c:if test="${empty sessionScope.styleList}">
+                <%--<c:if test="${empty sessionScope.styleList}">
                     <script type="text/javascript">
                         alert("styleList is NULL");
                     </script>
-                </c:if>
+                </c:if>--%>
 
                 <c:forEach items="${sessionScope.styleList}" var="style" varStatus="status">
                     <li class="admin-parent">
@@ -254,7 +255,8 @@
                 </c:forEach>
                 <li><a href="javascript:void(0);" onclick="loadRecommend()"><span class="am-icon-area-chart"></span> 留言</a>
                 </li>
-                <li><a href="${pageContext.request.contextPath}/app/games/index.html" ><span class="am-icon-android"></span>
+                <li><a href="${pageContext.request.contextPath}/app/games/index.html"><span
+                        class="am-icon-android"></span>
                     休闲游戏</a>
                 </li>
             </ul>

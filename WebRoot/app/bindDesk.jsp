@@ -10,9 +10,30 @@
 <html>
 <head>
     <title>Title</title>
+    <script type="text/javascript" src="../js/jquery-1.8.3.js"></script>
+    <script type="text/javascript">
+        /**
+         * 确认后调用styleServlet加载到session中
+         */
+        $(function () {
+            $("#button1").click(function () {
+                $.get("${pageContext.request.contextPath}/StyleServlet?method=getAllStyle",
+                    {},
+                    function (data) {
+                        if (data.indexOf('true') === -1) {
+                            //do nothing
+                        } else {
+                            //do nothing
+                            $("#bindDeskForm").submit();
+                        }
+                    }
+                );
+            });
+        });
+    </script>
 </head>
 <body>
-<form action="${pageContext.request.contextPath}/DeskServlet">
+<form action="${pageContext.request.contextPath}/DeskServlet" id="bindDeskForm">
     <input type="hidden" name="method" value="bindDesk">
     <h4>选择桌子</h4>
     <select name="deskId" id="deskId">
@@ -20,7 +41,7 @@
             <option value="${desk.did}">${desk.dName}--${desk.seatNum}人桌</option>
         </c:forEach>
     </select>
-    <input type="submit" value="确定">
+    <input type="button" value="确定" id="button1">
 </form>
 </body>
 </html>

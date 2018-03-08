@@ -322,6 +322,102 @@
             ace.settings.check('main-container', 'fixed')
         } catch (e) {
         }
+
+        /**
+         * 加载：添加Style页面
+         */
+        function loadAddStyle() {
+            //加载
+            $.post("${pageContext.request.contextPath}/StyleServlet?method=allStyle",
+                {},
+                function (data) {
+                    if (data.indexOf('true') === -1) {
+                        // flag = false;
+                        alert("failed");
+                    } else {
+                        // alert("add a goods");
+                        $("#mainDiv").load("AddStyle.jsp");
+                    }
+                }
+            );
+        }
+
+        /**
+         * 加载：显示所有样式页面
+         */
+        function loadListAllStyle() {
+
+        }
+
+        /**
+         * 加载：显示所有商品
+         */
+        function loadListAllGoods() {
+
+        }
+
+        /**
+         * 加载：添加商品页面
+         */
+        function loadAddGoods() {
+
+        }
+
+        /**
+         * 加载：显示所有订单页面
+         */
+        function loadAllOrder() {
+
+        }
+
+        /**
+         * 加载：显示未付款页面
+         */
+        function loadUnpaidOrder() {
+
+        }
+
+        /**
+         * 加载：显示付款页面
+         */
+        function loadPaidOrder() {
+
+        }
+
+        /**
+         * 加载：显示未就餐订单页面
+         */
+        function loadNotTakeOrder() {
+
+        }
+
+        /**
+         * 加载：显示已经完成的订单页面
+         */
+        function loadCompletedOrder() {
+
+        }
+
+        /**
+         * 加载：添加用户的页面
+         */
+        function loadAddUser() {
+
+        }
+
+        /**
+         * 加载：显示所有用户页面
+         */
+        function loadListAllUser() {
+
+        }
+
+        /**
+         * 加载：显示所有留言
+         */
+        function loadAllMessage() {
+
+        }
     </script>
 
     <div class="main-container-inner">
@@ -479,16 +575,33 @@
 
                     <ul class="submenu">
                         <li>
-                            <a href="elements.jsp">
+                            <a href="javascript:void(0);" onclick="loadAddUser();">
                                 <i class="icon-double-angle-right"></i>
                                 添加用户
                             </a>
                         </li>
 
                         <li>
-                            <a href="buttons.jsp">
+                            <a href="javascript:void(0);" onclick="loadListAllUser();">
                                 <i class="icon-double-angle-right"></i>
                                 查看用户
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#" class="dropdown-toggle">
+                        <i class="icon-desktop"></i>
+                        <span class="menu-text">留言管理</span>
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+
+                    <ul class="submenu">
+                        <li>
+                            <a href="javascript:void(0);" onclick="loadAllMessage();">
+                                <i class="icon-double-angle-right"></i>
+                                查看留言
                             </a>
                         </li>
                     </ul>
@@ -548,7 +661,7 @@
                 </div><!-- /.page-header -->
 
                 <div class="row">
-                    <div class="col-xs-12">
+                    <div class="col-xs-12" id="mainDiv">
                         <!-- PAGE CONTENT BEGINS -->
 
                         <div class="alert alert-block alert-success">
@@ -1781,12 +1894,12 @@
 
 <!--[if !IE]> -->
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="../js/jquery-1.8.3.js"></script>
 
 <!-- <![endif]-->
 
 <!--[if IE]>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="../js/jquery-1.10.2.min.js"></script>
 <![endif]-->
 
 <!--[if !IE]> -->
@@ -2027,8 +2140,6 @@
 
     })
 </script>
-More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a
-        href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
 </body>
 </html>
 

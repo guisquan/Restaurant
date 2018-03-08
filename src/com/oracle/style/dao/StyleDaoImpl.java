@@ -32,4 +32,42 @@ public class StyleDaoImpl {
         }
         return styleList;
     }
+
+    /**
+     * 所有类型，无级别
+     *
+     * @return
+     * @throws SQLException
+     */
+    public List<Style> allStyle() throws SQLException {
+        String sql = "select * from style where 1 ";
+        return qr.query(sql, new BeanListHandler<>(Style.class));
+    }
+
+    /**
+     * 根据名称查找类型
+     *
+     * @param name
+     * @return
+     * @throws SQLException
+     */
+    public Style findStyleByName(String name) throws SQLException {
+        String sql = "select * from style where sName = ?";
+        return qr.query(sql, new BeanHandler<>(Style.class), name);
+    }
+
+    public Style findStyleById(int sid) throws SQLException {
+        String sql = "select * from style where sid = ?";
+        return qr.query(sql, new BeanHandler<>(Style.class), sid);
+    }
+
+    public boolean insertStyle(Style style) throws SQLException {
+        String sql = "insert into style(sName, spid, sPath) values(?,?,?)";
+        return 0 < qr.update(sql, style.getsName(), style.getSpid(), style.getsPath());
+    }
+
+    public boolean updateStyle(Style style) throws SQLException {
+        String sql = "UPDATE `style` SET sName=?, spid=?, sPath=? WHERE sid=?";
+        return 0 < qr.update(sql, style.getsName(), style.getSpid(), style.getsPath(), style.getSid());
+    }
 }
