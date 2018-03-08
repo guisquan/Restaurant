@@ -23,4 +23,13 @@ public class GoodsDaoImpl {
         return qr.query(sql, new BeanHandler<>(Goods.class), gid);
     }
 
+    /**
+     * @param num 需要的个数
+     * @return
+     */
+    public List<Goods> findSomeGoodsLimit(int num) throws SQLException {
+        String sql = "select * from goods order by  gStyle DESC limit 0 , ?";
+        return qr.query(sql, new BeanListHandler<Goods>(Goods.class), num);
+    }
+
 }

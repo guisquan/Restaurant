@@ -28,4 +28,16 @@ public class GoodsBizImpl {
         }
         return goods;
     }
+
+    /**
+     * @return 推荐的商品
+     */
+    public List<Goods> getRecommendGoods() {
+        try {
+            return goodsDao.findSomeGoodsLimit(4);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

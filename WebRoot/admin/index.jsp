@@ -346,7 +346,18 @@
          * 加载：显示所有样式页面
          */
         function loadListAllStyle() {
-
+            $.post("${pageContext.request.contextPath}/StyleServlet?method=allStyle",
+                {},
+                function (data) {
+                    if (data.indexOf('true') === -1) {
+                        // flag = false;
+                        alert("failed");
+                    } else {
+                        // alert("add a goods");
+                        $("#mainDiv").load("AllStyle.jsp");
+                    }
+                }
+            );
         }
 
         /**

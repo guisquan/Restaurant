@@ -86,7 +86,7 @@
                     <tr>
                         <td>${status.count}</td>
                         <td>
-                            <div><img src="<c:url value='/${cartItem.goods.gImage }'/>"/></div>
+                            <div><img style ='width:60px;height:auto;border-radius: 15px;' src="<c:url value='/${cartItem.goods.gImage }'/>"/></div>
                         </td>
                         <td>${cartItem.goods.gName }</td>
                         <td>${cartItem.goods.gPrice }元</td>

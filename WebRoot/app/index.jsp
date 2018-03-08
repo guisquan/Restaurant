@@ -57,7 +57,9 @@
     </style>
     <script type="text/javascript" src="../js/jquery-2.1.0.js"></script>
     <script type="text/javascript">
-
+        <c:if test="${empty sessionScope.session_user or empty sessionScope.desk}">
+        window.location = "../index.jsp";
+        </c:if>
         /*//加减按钮
         $(function () {
             //加的效果
@@ -92,23 +94,23 @@
          * 初始化，加载菜单栏
          */
         //放在bindDesk中了
-        /*$(function () {
-            $.ajaxSetup({
-                async: false
-            });
-            var flag = true;
-            $.get("${pageContext.request.contextPath}/StyleServlet?method=getAllStyle",
-                {},
-                function (data) {
-                    if (data.indexOf('true') === -1) {
-                        flag = false;
-                        // return true;
-                    } else {
-                        //do something while true;
-                    }
-                }
-            );
-        });*/
+        <%--/* $(function () {--%>
+        <%--$.ajaxSetup({--%>
+        <%--async: false--%>
+        <%--});--%>
+        <%--var flag = true;--%>
+        <%--$.get("${pageContext.request.contextPath}/StyleServlet?method=getAllStyle",--%>
+        <%--{},--%>
+        <%--function (data) {--%>
+        <%--if (data.indexOf('true') === -1) {--%>
+        <%--flag = false;--%>
+        <%--// return true;--%>
+        <%--} else {--%>
+        <%--//do something while true;--%>
+        <%--}--%>
+        <%--}--%>
+        <%--);--%>
+        <%--});*/--%>
 
         function loadStylesById(styleId) {
             var goodsList = new Array();
@@ -136,7 +138,9 @@
                     "<div class='card-box'>" +
                     "<h4 class='header-title m-t-0 m-b-30'>" + goodsList[i].gName + "</h4>" +
                     "<div class='widget-chart-1 am-cf'>" +
-                    "<div id='widget-chart-box-1' style='height: 110px;width: 110px;float: left;'></div>" +
+                    "<div id='widget-chart-box-1' style='height: 150px;width: 150px;float: left;'>" +
+                    "<img  style ='width:150px;height:auto;border-radius: 15px;' src=${pageContext.request.contextPath}/" + goodsList[i].gImage + " >" +
+                    "</div>" +
                     "<div class='widget-detail-1' style='float: right;'>" +
                     "<h2 class='p-t-10 m-b-0'>￥" + goodsList[i].gPrice + " </h2>" +
                     "<p class='text-muted'>" +
@@ -173,8 +177,23 @@
             $("#rowCard").load("recommend.jsp");
         }
 
-        function loadGame() {
-            <%--$("#rowCard").load("${pageContext.request.contextPath}/app/games/index.html");--%>
+        $(function () {
+            loadTuijian();
+        });
+
+        function loadTuijian() {
+            $.post("${pageContext.request.contextPath}/GoodsServlet?method=getRecommendGoods",
+                {},
+                function (data) {
+                    if (data.indexOf('true') === -1) {
+                        // flag = false;
+                        alert("failed");
+                    } else {
+                        // alert("add a goods");
+                        $("#rowCard").load("tuijian.jsp");
+                    }
+                }
+            );
         }
     </script>
 </head>
@@ -184,7 +203,7 @@
 <header class="am-topbar am-topbar-fixed-top">
     <div class="am-topbar-left am-hide-sm-only">
         <a href="index.jsp" class="logo">
-            <span>${sessionScope.desk.dName}<span>${sessionScope.desk.seatNum}</span></span>
+            <span>${sessionScope.desk.dName}<span>&nbsp;&nbsp;&nbsp;${sessionScope.desk.seatNum}人桌</span></span>
             <i class="zmdi zmdi-layers"></i></a>
     </div>
 
@@ -227,12 +246,7 @@
             <!-- End User -->
 
             <ul class="am-list admin-sidebar-list">
-                <li><a href="index.jsp"><span class="am-icon-home"></span> 首页</a></li>
-                <%--<c:if test="${empty sessionScope.styleList}">
-                    <script type="text/javascript">
-                        alert("styleList is NULL");
-                    </script>
-                </c:if>--%>
+                <li><a href="javascript:void(0);" onclick="loadTuijian()"><span class="am-icon-home"></span> 首页</a></li>
 
                 <c:forEach items="${sessionScope.styleList}" var="style" varStatus="status">
                     <li class="admin-parent">
