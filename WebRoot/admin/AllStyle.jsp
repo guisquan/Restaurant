@@ -27,7 +27,7 @@
         <div class="widget-header widget-header-flat">
             <h4 class="lighter">
                 <i class="icon-star orange"></i>
-                热门域名
+                所有分类
             </h4>
 
             <div class="widget-toolbar">
