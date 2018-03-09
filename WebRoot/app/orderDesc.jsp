@@ -18,9 +18,9 @@
     <link rel="stylesheet" href="../css/page/typography.css"/>
     <link rel="stylesheet" href="../css/page/form.css"/>
     <link rel="stylesheet" href="../css/component.css"/>
-    <script type="text/javascript" src="../js/jquery-2.1.0.js"></script>
-    <script type="text/javascript">
-    </script>
+    <%--<script type="text/javascript" src="../js/jquery-1.8.3.js"></script>--%>
+    <%--<script type="text/javascript">--%>
+    <%-- </script>--%>
 </head>
 <body>
 <div class="am-u-md-8" id="foods">
@@ -65,7 +65,8 @@
                 <input type="radio" name="pd_FrpId" value="BOCO-NET-B2C"/>交通银行
                 <img src="${pageContext.request.contextPath }/bank_img/bcc.bmp" align="middle"/><br/>
             </form>
-            <em class="label label-warning" ><a id="pay" href="javascript:document.getElementById('form').submit();">结账</a>
+            <em class="label label-warning">
+                <a id="pay" href="javascript:document.getElementById('form').submit();">结账</a>
             </em><%--<em class="label label-warning" style="float:right;" id="placeTheOrder">结账</em>--%>
         </div>
     </div>
