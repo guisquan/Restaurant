@@ -9,21 +9,16 @@
     <link rel="stylesheet" href="../css/swiper-4.1.6.min.css">
     <style type="text/css">
         .swiper-container {
-            width: 700px;
+            width: 100%;
             height: 400px;
         }
 
         img {
             /*margin: 0 auto;*/
             display: block;
-            width: 200px;
+            width: 100%;
             height: auto;
             border-radius: 15px;
-        }
-
-        .swiper-container {
-            width: 100%;
-            height: 100%;
         }
 
         .swiper-slide {
@@ -88,6 +83,10 @@
         navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
         },
         breakpoints: {
             1024: {
