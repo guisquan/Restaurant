@@ -10,15 +10,40 @@
     <style type="text/css">
         .swiper-container {
             width: 700px;
-            height: 700px;
+            height: 400px;
         }
 
         img {
-            margin: 0 auto;
+            /*margin: 0 auto;*/
             display: block;
-            width: 400px;
+            width: 200px;
             height: auto;
             border-radius: 15px;
+        }
+
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
         }
     </style>
 </head>
@@ -49,16 +74,38 @@
     <!-- 如果需要导航按钮 -->
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
+
+    <div class="swiper-pagination"></div>
 </div>
 <script src="../js/swiper-4.1.6.min.js"></script>
 <script>
     var mySwiper = new Swiper('.swiper-container', {
-        direction: 'vertical',
+        slidesPerView: 3,
+        spaceBetween: 50,
+        // direction: 'vertical',
         loop: true,
         // 如果需要前进后退按钮
         navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+            1024: {
+                slidesPerView: 4,
+                spaceBetween: 40,
+            },
+            768: {
+                slidesPerView: 3,
+                spaceBetween: 30,
+            },
+            640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+            },
+            320: {
+                slidesPerView: 1,
+                spaceBetween: 10,
+            }
         },
         autoplay: true
     });

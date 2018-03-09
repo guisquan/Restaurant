@@ -153,29 +153,29 @@
 
 <form action="" method="post" class="bootstrap-frm" id="msgForm">
     <input type="hidden" name="method" value="addMsg">
-    <h1>Contact Form
-        <span>Please fill all the texts in the fields.</span>
+    <h1>留言板
+        <span>请留下您的宝贵意见</span>
     </h1>
     <label>
-        <span>Your Name :</span>
+        <span>您的名字:</span>
         <input id="name" type="text" name="uName" placeholder="Your Full Name" onblur="checkName()"/>
     </label>
 
     <label>
-        <span>Your Email :</span>
+        <span>您的邮箱:</span>
         <input id="mEmail" type="email" name="mEmail" placeholder="Valid Email Address" onblur="checkEmail()"/>
 
     </label>
 
     <label>
-        <span>Message :</span>
+        <span>留言消息 :</span>
         <textarea id="message" name="message" placeholder="Your Message to Us" onblur="checkMessage()"></textarea>
     </label>
     <label>
-        <span>Subject :</span>
+        <span>主题 :</span>
         <select name="mSubject" id="mSubject">
-            <option value="1">Job Inquiry</option>
-            <option value="2">General Question</option>
+            <option value="1">工作咨询</option>
+            <option value="2">普通询问</option>
         </select>
     </label>
     <label>

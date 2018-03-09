@@ -56,7 +56,7 @@
                             }
                             else {
                                 //添加成功
-                                alert("Add a new Style!");
+                                alert("添加了一个类型!");
                                 // return true;
                             }
                         }

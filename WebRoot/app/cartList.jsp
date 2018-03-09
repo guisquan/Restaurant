@@ -56,7 +56,7 @@
                         // 提醒删除失败;
                     } else {
                         //刷新页面或者用js修改
-                        $("#main").load("orderDesc.jsp");
+                        $("#rowCard").load("orderDesc.jsp");
                     }
 
                 });
